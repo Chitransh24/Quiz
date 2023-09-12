@@ -15,7 +15,6 @@ const Mcq = () => {
   const [maxScore, setMaxScore] = useState(100);
   useEffect(() => {
     var shuffledArray = [];
-    // setQuestionCounter(data[questionNumber])
     var arr = questionCounter?.incorrect_answers.concat(
       questionCounter?.correct_answer
     );
@@ -30,24 +29,18 @@ const Mcq = () => {
     setChoices(shuffledArray);
     if (questionNumber === 20) setQuestionNumber(0);
   }, [questionNumber, questionCounter]);
-
-  // console.log(choices);
-
   const checkAnswer = (item) => {
     if (item === decodeURIComponent(questionCounter.correct_answer))
       {
         setScore(score+(1/20 * maxScore))
         setCorrectAns(item);
       }
-
     if (decodeURIComponent(questionCounter.incorrect_answers).includes(item)) {
       setMaxScore(maxScore-(1/20 * maxScore))
       setIncorrectAns(item);
       setCorrectAns(decodeURIComponent(questionCounter.correct_answer));
     }
   };
-
-  console.log(incorrectAns ? "incorrect" : correctAns ? "Correct" : "");
   return (
     <div className="ParentDiv">
       <LoadingBar
@@ -66,17 +59,11 @@ const Mcq = () => {
         <ReactStars
           count={5}
           size={15}
-          value={
-            questionCounter.difficulty === "easy"
-              ? 1
-              : questionCounter.difficulty === "medium"
-              ? 2
-              : 3
-          }
+          value={ questionCounter.difficulty === "easy" ? 1 : questionCounter.difficulty === "medium" ? 2 : 3}
           color2={"#000000"}
           edit={false}
         />
-        ,<h3>{decodeURIComponent(questionCounter.question)}</h3>
+        <h3>{decodeURIComponent(questionCounter.question)}</h3>
       </div>
       <div className="Choices">
         {choices.map((item, index) => {
@@ -87,13 +74,7 @@ const Mcq = () => {
               onClick={() => {
                 checkAnswer(item, index);
               }}
-              className={
-                correctAns === item
-                  ? "correct"
-                  : incorrectAns === item
-                  ? "incorrect"
-                  : "default"
-              }
+              className={correctAns === item ? "correct" : incorrectAns === item ? "incorrect" : "default"}
               disabled={correctAns || incorrectAns === item ? true : false}
             >
               {item}
@@ -122,19 +103,13 @@ const Mcq = () => {
       </div>
       <div style={{ width: "100%" , marginTop:"auto"}}>
       <div style={{width:"100%", display:"flex", justifyContent:"space-between"}}>
-
         <h3>Score: {Math.ceil(score)}%</h3>
         <h3>Max Score: {Math.ceil(maxScore)}%</h3>
       </div>
-        <ProgressBar
-          completed={score}
-          maxCompleted={maxScore}
-          customLabel="&nbsp;"
-          bgColor="black"
+        <ProgressBar completed={score} maxCompleted={maxScore} customLabel="&nbsp;" bgColor="black"
         />
       </div>
     </div>
   );
 };
-
 export default Mcq;
