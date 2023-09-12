@@ -1,0 +1,70 @@
+#btn{
+    border-radius: 8px;
+    /* height: 2rem; */
+    padding: 7.5px 0px;
+    width: 10rem;
+}
+.ParentDiv{
+    display: flex;
+    width: 25%;
+    justify-content: flex-start;
+    align-items: flex-start;    
+    margin: 0px auto;
+    height: 85vh;
+    padding: 3rem 10rem;
+    flex-direction: column;
+    border-width: 7px 4px ;
+    border-color: grey;
+    border-style: solid;
+}
+.incorrect{
+    background-color: blueviolet;
+}
+.correct{
+    background-color: aqua;
+}
+.default{
+    cursor: pointer;
+
+}
+.default:disabled{
+    background-color: rgb(200, 200, 200);
+    color: black;
+    cursor: default;
+}
+.incorrect:disabled{
+    background-color: white;
+    cursor: default;
+    color: black;
+}
+.correct:disabled{
+    cursor: default;
+    background-color: black;
+    color: white;
+}
+.Choices{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:  30px 100px; 
+}
+.ChildDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto;
+    flex-direction: column;
+    width: auto;
+}
+.NextBtn{
+    border-radius: 4px;
+    /* height: 2rem; */
+    padding: 7.5px 0px;
+    width: 10rem;
+    /* margin-top: 100px; */
+    margin-right: 60px;
+    cursor: pointer;
+}
+.feedback{
+    font-size: 24px;
+    margin: 40px auto 10px 40px;
+}
